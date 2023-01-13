@@ -30,6 +30,7 @@ idresponse = idresponse.text
 idlist = idresponse.replace("<option value='", "")
 idlist = idlist.replace("</option>", ",\n")
 idlist = idlist.replace("'>", '')
+
 with open('./grouplist.txt', 'w', encoding='utf-8') as file: 
     file.write(idlist)
 with open("./grouplist.txt") as file:
@@ -37,7 +38,7 @@ with open("./grouplist.txt") as file:
     for line in groupid:
         if group in line:
             groupid = line
-            file.close()
+
 groupid = groupid.replace(group, '')
 groupid = groupid.replace(',\n', '')
 print("Значение для указанной группы: ", groupid)
@@ -56,9 +57,6 @@ datasem = {
   'sdate_year': today.year,
   'sdate_month': today.month,
   'sdate_day': today.day,
-  'fdate_year': '2023',
-  'fdate_month': '01',
-  'fdate_day': '20'
 }
 
 datamonth = {
@@ -103,7 +101,7 @@ with open('./raspsem.html', 'w+', encoding='utf-8') as f:
     raspsem = raspsem.replace('>8</td>', '>8| 20:20</td>')
     raspsem = raspsem.replace('10px', '14px')
     f.write(raspsem)
-    f.close()
+
 raspmonth = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=datamonth)
 with open('./raspmonth.html', 'w+', encoding='utf-8') as f:
     raspmonth = raspmonth.text
@@ -117,7 +115,7 @@ with open('./raspmonth.html', 'w+', encoding='utf-8') as f:
     raspmonth = raspmonth.replace('>8</td>', '>8| 20:20</td>')
     raspmonth = raspmonth.replace('10px', '14px')
     f.write(raspmonth)
-    f.close()
+
 raspweek = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=dataweek)
 with open('./raspweek.html', 'w+', encoding='utf-8') as f:
     raspweek = raspweek.text
@@ -131,7 +129,7 @@ with open('./raspweek.html', 'w+', encoding='utf-8') as f:
     raspweek = raspweek.replace('>8</td>', '>8| 20:20</td>')
     raspweek = raspweek.replace('10px', '14px')
     f.write(raspweek)
-    f.close()
+
 print("html файлы с расписанием созданы")
 
 # Создание предпросмотров
