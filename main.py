@@ -27,9 +27,7 @@ groupvaluedata = {
 }
 idresponse = requests.post('https://raspis.rggu.ru/rasp/2.php', headers=headers, data=groupvaluedata)
 idresponse = idresponse.text
-idlist = idresponse.replace("<option value='", "")
-idlist = idlist.replace("</option>", ",\n")
-idlist = idlist.replace("'>", '')
+idlist = idresponse.replace("<option value='", "").replace("</option>", ",\n").replace("'>", '')
 
 with open('./grouplist.txt', 'w', encoding='utf-8') as file: 
     file.write(idlist)
@@ -38,9 +36,8 @@ with open("./grouplist.txt") as file:
     for line in groupid:
         if group in line:
             groupid = line
+groupid = groupid.replace(group, '').replace(',\n', '')
 
-groupid = groupid.replace(group, '')
-groupid = groupid.replace(',\n', '')
 print("Значение для указанной группы: ", groupid)
 
 # Запись нужных параметров в переменные
@@ -88,62 +85,35 @@ dataweek = {
 }
 
 # Получение расписания с сайта по заданным параметрам и добавление времени к номерам пары
-raspsem = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=datasem)
+rasp = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=datasem)
 with open('./raspsem.html', 'w+', encoding='utf-8') as f:
-    raspsem = raspsem.text
-    raspsem = raspsem.replace('>1</td>', '>1| 08:45</td>')
-    raspsem = raspsem.replace('>2</td>', '>2| 10:15</td>')
-    raspsem = raspsem.replace('>3</td>', '>3| 12:10</td>')
-    raspsem = raspsem.replace('>4</td>', '>4| 13:40</td>')
-    raspsem = raspsem.replace('>5</td>', '>5| 15:35</td>')
-    raspsem = raspsem.replace('>6</td>', '>6| 17:05</td>')
-    raspsem = raspsem.replace('>7</td>', '>7| 18:50</td>')
-    raspsem = raspsem.replace('>8</td>', '>8| 20:20</td>')
-    raspsem = raspsem.replace('10px', '14px')
-    f.write(raspsem)
+    rasp = rasp.text
+    replace = rasp.replace('>1</td>', '>1| 08:45</td>').replace('>2</td>', '>2| 10:15</td>').replace('>2</td>', '>2| 10:15</td>').replace('>3</td>', '>3| 12:10</td>').replace('>4</td>', '>4| 13:40</td>').replace('>5</td>', '>5| 15:35</td>').replace('>6</td>', '>6| 17:05</td>').replace('>7</td>', '>7| 18:50</td>').replace('>8</td>', '>8| 20:20</td>').replace('10px', '14px')
+    f.write(replace)
 
-raspmonth = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=datamonth)
+rasp = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=datamonth)
 with open('./raspmonth.html', 'w+', encoding='utf-8') as f:
-    raspmonth = raspmonth.text
-    raspmonth = raspmonth.replace('>1</td>', '>1| 08:45</td>')
-    raspmonth = raspmonth.replace('>2</td>', '>2| 10:15</td>')
-    raspmonth = raspmonth.replace('>3</td>', '>3| 12:10</td>')
-    raspmonth = raspmonth.replace('>4</td>', '>4| 13:40</td>')
-    raspmonth = raspmonth.replace('>5</td>', '>5| 15:35</td>')
-    raspmonth = raspmonth.replace('>6</td>', '>6| 17:05</td>')
-    raspmonth = raspmonth.replace('>7</td>', '>7| 18:50</td>')
-    raspmonth = raspmonth.replace('>8</td>', '>8| 20:20</td>')
-    raspmonth = raspmonth.replace('10px', '14px')
-    f.write(raspmonth)
+    rasp = rasp.text
+    replace = rasp.replace('>1</td>', '>1| 08:45</td>').replace('>2</td>', '>2| 10:15</td>').replace('>2</td>', '>2| 10:15</td>').replace('>3</td>', '>3| 12:10</td>').replace('>4</td>', '>4| 13:40</td>').replace('>5</td>', '>5| 15:35</td>').replace('>6</td>', '>6| 17:05</td>').replace('>7</td>', '>7| 18:50</td>').replace('>8</td>', '>8| 20:20</td>').replace('10px', '14px')
+    f.write(replace)
 
-raspweek = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=dataweek)
+rasp = requests.post('https://raspis.rggu.ru/rasp/3.php', headers=headers, data=dataweek)
 with open('./raspweek.html', 'w+', encoding='utf-8') as f:
-    raspweek = raspweek.text
-    raspweek = raspweek.replace('>1</td>', '>1| 08:45</td>')
-    raspweek = raspweek.replace('>2</td>', '>2| 10:15</td>')
-    raspweek = raspweek.replace('>3</td>', '>3| 12:10</td>')
-    raspweek = raspweek.replace('>4</td>', '>4| 13:40</td>')
-    raspweek = raspweek.replace('>5</td>', '>5| 15:35</td>')
-    raspweek = raspweek.replace('>6</td>', '>6| 17:05</td>')
-    raspweek = raspweek.replace('>7</td>', '>7| 18:50</td>')
-    raspweek = raspweek.replace('>8</td>', '>8| 20:20</td>')
-    raspweek = raspweek.replace('10px', '14px')
-    f.write(raspweek)
+    rasp = rasp.text
+    replace = rasp.replace('>1</td>', '>1| 08:45</td>').replace('>2</td>', '>2| 10:15</td>').replace('>2</td>', '>2| 10:15</td>').replace('>3</td>', '>3| 12:10</td>').replace('>4</td>', '>4| 13:40</td>').replace('>5</td>', '>5| 15:35</td>').replace('>6</td>', '>6| 17:05</td>').replace('>7</td>', '>7| 18:50</td>').replace('>8</td>', '>8| 20:20</td>').replace('10px', '14px')
+    f.write(replace)
 
 print("html файлы с расписанием созданы")
 
 # Создание предпросмотров
-raspsem = [str('./pic/raspsem-'), str(today), str('.png') ]
-raspmonth = [str('./pic/raspmonth-'), str(today), str('.png') ]
-raspweek = [str('./pic/raspweek-'), str(today), str('.png') ]
 try:
     browser.set_window_size(800, 1644)
     browser.get(sem_file_path)
-    browser.save_screenshot("".join(raspsem))
+    browser.save_screenshot("".join(['./pic/raspsem-', str(today), '.png' ]))
     browser.get(month_file_path)
-    browser.save_screenshot("".join(raspmonth))
+    browser.save_screenshot("".join(['./pic/raspmonth-', str(today), '.png' ]))
     browser.get(week_file_path)
-    browser.save_screenshot("".join(raspweek))
+    browser.save_screenshot("".join(['./pic/raspweek-', str(today), '.png' ]))
+    print("Предпросмотры созданы")
 finally:
     browser.quit()
-    print("Предпросмотры созданы")
