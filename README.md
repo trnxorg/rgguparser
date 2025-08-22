@@ -8,7 +8,7 @@ Cкрипт python для получения расписания с сайта 
 ## Установка и настройка:
 Для работы требуются библиотеки requests, datetime и selenium. Скачать скрипт можно коммандой:
 
-    git clone https://github.com/antvd/rgguparser/
+    git clone https://github.com/trnxorg/rgguparser/
 
 Настройки осуществляются в начале файла main.py. Там необходимо ввести параметры для своей группы и пути к html файлам для создания предпросмотров (png изображений):
 
